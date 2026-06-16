@@ -1,0 +1,12 @@
+﻿{
+  "Id": "NoAugmentNegativeEffects",
+  "DisplayName": "No Augment Negative Effects",
+  "Author": "GravitonGamer",
+  "Version": "1.0.0",
+  "ManagerVersion": "0.25.0",
+  "Requirements": [],
+  "AssemblyName": "NoAugmentNegativeEffects.dll",
+  "EntryMethod": "NoAugmentNegativeEffects.Main.Load",
+  "HomePage": "https://github.com/Jace17/NoAugmentNegativeEffects",
+  "Repository": "https://github.com/Jace17/NoAugmentNegativeEffects"
+}

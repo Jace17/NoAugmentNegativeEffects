@@ -221,9 +221,8 @@ public static class Main
 
                     if ((augment.ComponentsArray?.Length ?? 0) != components.Count)
                     {
-                        augment.ComponentsArray = components.ToArray();
+                        augment.ComponentsArray = [.. components];
                         //Log.Log($"Removed negative effect from augment: {augment.name} ({guid})");
-                        __instance.AddCachedBlueprint(guid, augment);
                     }
                 }
 

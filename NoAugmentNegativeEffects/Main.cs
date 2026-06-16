@@ -1,8 +1,10 @@
 ﻿using HarmonyLib;
-using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Augments;
 using Kingmaker.Blueprints.Items.Components;
 using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.Code.UI.MVVM.VM.Tooltip.Bricks;
+using Kingmaker.Code.UI.MVVM.VM.Tooltip.Templates.TooltipTemplateItemParts;
+using Owlcat.Runtime.UI.Tooltips;
 using System.Reflection;
 using UnityModManagerNet;
 
@@ -16,7 +18,7 @@ public static class Main
     public static bool Load(UnityModManager.ModEntry modEntry)
     {
         Log = modEntry.Logger;
-        modEntry.OnGUI = OnGUI; 
+        modEntry.OnGUI = OnGUI;
         HarmonyInstance = new Harmony(modEntry.Info.Id);
         try
         {
@@ -230,6 +232,17 @@ public static class Main
             {
                 Log.Log(string.Concat("Failed to initialize.", e));
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(AugmentItemPart))]
+    public static class AugmentItemPart_Patch
+    {
+        [HarmonyPriority(Priority.First)]
+        [HarmonyPatch(nameof(AugmentItemPart.AddEffectsDescription)), HarmonyPostfix]
+        public static void AddEffectsDescription_Postfix(ref List<ITooltipBrick> result)
+        {
+            result.RemoveAll(t => t is TooltipBrickTitle);
         }
     }
 }
